@@ -69,5 +69,9 @@ _Avoid_: Partial trial, cheap trial
 The statistical model `stagebo` fits to trial results to predict how good an untried config would be, with its uncertainty.
 _Avoid_: Proxy model, predictor
 
+**Shadow price**:
+The per-token price charged for a model run locally through Ollama: what the same model costs from a hosted provider, from LiteLLM's price list (ADR 0002).
+_Avoid_: Local cost, notional cost
+
 **Audit**:
 A small set of judge verdicts checked by a person, used to measure how often the judge is wrong.
