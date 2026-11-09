@@ -22,6 +22,9 @@ dependencies = [
     "scikit-learn>=1.3",
     "matplotlib>=3.10",
     "huggingface-hub>=0.20",
+    # Listed directly (it comes in through agentic-autorag) so the source below applies:
+    # the CUDA build on Windows, so embedding and reranking run on the GPU.
+    "torch==2.11.*",
 ]
 
 [project.scripts]
@@ -36,6 +39,23 @@ dev = [
 
 [tool.uv.sources]
 agentic-autorag = { path = "../Agentic-AutoRAG", editable = true }
+# The wheel bundles the CUDA runtime and cuDNN; only the NVIDIA driver is needed.
+# On Linux (CI) the CPU build: PyPI's Linux wheel pulls several GB of CUDA libraries.
+# macOS wheels on PyPI are CPU-only already.
+torch = [
+    { index = "pytorch-cu130", marker = "sys_platform == 'win32'" },
+    { index = "pytorch-cpu", marker = "sys_platform == 'linux'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
