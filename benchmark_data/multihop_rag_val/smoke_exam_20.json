@@ -1,0 +1,648 @@
+[
+  {
+    "id": "mhrag_105",
+    "question": "Has the redemption option for cash back rewards as statement credits for cardholders remained consistent between the 'American Express Cash Magnet® card' as reported by Fortune before November 3, 2023, and the 'Fifth Third 1.67% Card' as reported by the same news source?",
+    "canonical_answer": "Yes",
+    "answer_variants": [],
+    "reasoning_type": "inference",
+    "source_doc_ids": [
+      "fifth_third_1_67_cash_back_card_one_of_the_simplest_cash_back_credit_cards_with_an_above_average_return",
+      "american_express_cash_magnet_card_review_a_simple_no_nonsense_cash_back_card"
+    ],
+    "source_spans": [
+      "You can redeem them as a direct deposit into your Fifth Third checking or savings account, or you can request that a statement credit be applied to your card.",
+      "If you have the American Express Cash Magnet® card, you can redeem your cash back rewards for statement credits to your account."
+    ],
+    "source_span_offsets": [
+      [
+        9392,
+        9550
+      ],
+      [
+        4486,
+        4614
+      ]
+    ],
+    "supporting_doc_ids": [
+      "fifth_third_1_67_cash_back_card_one_of_the_simplest_cash_back_credit_cards_with_an_above_average_return",
+      "american_express_cash_magnet_card_review_a_simple_no_nonsense_cash_back_card"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_106",
+    "question": "Does the article from Business Today | Latest Stock Market And Economy News India discuss the State of Israel in the context of a military conflict, while the TechCrunch article focuses on legal strategies within the SBF case?",
+    "canonical_answer": "Yes",
+    "answer_variants": [],
+    "reasoning_type": "comparison",
+    "source_doc_ids": [
+      "039_massive_intel_failure_by_mossad_039_hamas_039_surprise_attack_on_israel_shocks_internet",
+      "sbf_trial_the_latest_updates_from_the_ftx_collapse_s_courtroom_drama"
+    ],
+    "source_spans": [
+      "Also Read: Israel at war: Hamas cells, military compounds destroyed, US backs Tel Aviv; all you need to know",
+      "There, you can find stories like this in-depth breakdown of what to expect from both sides of the SBF case, where the prosecution and defense could gain ground or fall short in their arguments and what the takeaways were from the opening arguments."
+    ],
+    "source_span_offsets": [
+      [
+        625,
+        733
+      ],
+      [
+        2475,
+        2723
+      ]
+    ],
+    "supporting_doc_ids": [
+      "039_massive_intel_failure_by_mossad_039_hamas_039_surprise_attack_on_israel_shocks_internet",
+      "sbf_trial_the_latest_updates_from_the_ftx_collapse_s_courtroom_drama"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_1174",
+    "question": "Who is the individual that persuaded Adam Yedidia to join his trading venture after leaving Jane Street, told Paradigm about his plans for a specialized board for his exchange platform while excluding investors as directors, and is accused by the prosecution of committing fraud for personal gain, with connections to news articles from Fortune, Cnbc | World Business News Leader, and TechCrunch?",
+    "canonical_answer": "Sam Bankman-Fried",
+    "answer_variants": [],
+    "reasoning_type": "inference",
+    "source_doc_ids": [
+      "is_sam_bankman_fried_a_bad_man_or_a_good_boy_lawyers_swap_opening_statements_before_first_witnesses_take_the_stand",
+      "sex_signal_messages_and_sabotaging_ftx_s_code_sbf_execs_and_bahamas_roommates_tell_all_in_court",
+      "sam_altman_backs_teens_startup_google_unveils_the_pixel_8_and_tiktok_tests_an_ad_free_tier"
+    ],
+    "source_spans": [
+      "And after Bankman-Fried left Jane Street, the high-frequency trading firm where the former billionaire got his start in finance after MIT, he persuaded Yedidia to join him as a trader at Alameda and then as a developer at FTX.",
+      "During cross-examination, Huang said Paradigm pressed Bankman-Fried on the board issue and was told he didn't want investors as directors but he did plan on having a board with experts.",
+      "The prosecution painted Bankman-Fried as someone who knowingly committed fraud to achieve great wealth, power and influence"
+    ],
+    "source_span_offsets": [
+      [
+        5165,
+        5391
+      ],
+      [
+        11956,
+        12141
+      ],
+      [
+        6389,
+        6512
+      ]
+    ],
+    "supporting_doc_ids": [
+      "is_sam_bankman_fried_a_bad_man_or_a_good_boy_lawyers_swap_opening_statements_before_first_witnesses_take_the_stand",
+      "sex_signal_messages_and_sabotaging_ftx_s_code_sbf_execs_and_bahamas_roommates_tell_all_in_court",
+      "sam_altman_backs_teens_startup_google_unveils_the_pixel_8_and_tiktok_tests_an_ad_free_tier"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_1294",
+    "question": "Does the FOX News - Health article link Ketamine to the treatment of depression, while the Advanced Science News article associates the ketogenic diet with the potential to improve treatment for human behavioral conditions?",
+    "canonical_answer": "Yes",
+    "answer_variants": [],
+    "reasoning_type": "comparison",
+    "source_doc_ids": [
+      "5_myths_about_ketamine_the_drug_tied_to_matthew_perry_s_death_according_to_doctors",
+      "cavefish_provide_clues_to_the_keto_diet_s_effect_on_autism_like_behavior"
+    ],
+    "source_spans": [
+      "Ketamine is primarily used as an anesthetic during surgical procedures — but in recent years it's been used as a remedy for treatment-resistant depression .",
+      "Lee, who has experimented with ketogenic diets to improve autism symptoms with some success suggested they try it with the fish."
+    ],
+    "source_span_offsets": [
+      [
+        495,
+        651
+      ],
+      [
+        2829,
+        2957
+      ]
+    ],
+    "supporting_doc_ids": [
+      "5_myths_about_ketamine_the_drug_tied_to_matthew_perry_s_death_according_to_doctors",
+      "cavefish_provide_clues_to_the_keto_diet_s_effect_on_autism_like_behavior"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_1302",
+    "question": "Between the TechCrunch report on Sam Bankman-Fried's trial and the subsequent TechCrunch report on the allegations against him, was there a change in the portrayal of his actions related to the FTX situation?",
+    "canonical_answer": "Yes",
+    "answer_variants": [],
+    "reasoning_type": "inference",
+    "source_doc_ids": [
+      "sbf_s_trial_starts_soon_but_how_did_he_and_ftx_get_here",
+      "the_jury_finally_hears_from_sam_bankman_fried",
+      "sam_altman_backs_teens_startup_google_unveils_the_pixel_8_and_tiktok_tests_an_ad_free_tier"
+    ],
+    "source_spans": [
+      "Bankman-Fried was even compared to Warren Buffet and many called him the white horse of crypto (TechCrunch never did, for what it's worth).",
+      "Sam Bankman-Fried, the founder of failed cryptocurrency exchange FTX, has been found guilty on seven counts including charges of wire fraud.",
+      "The prosecution painted Bankman-Fried as someone who knowingly committed fraud to achieve great wealth, power and influence, while the defense countered that the FTX founder acted in good faith, never meant to commit fraud or steal and basically got in over his head."
+    ],
+    "source_span_offsets": [
+      [
+        1677,
+        1816
+      ],
+      [
+        634,
+        774
+      ],
+      [
+        6389,
+        6656
+      ]
+    ],
+    "supporting_doc_ids": [
+      "sbf_s_trial_starts_soon_but_how_did_he_and_ftx_get_here",
+      "the_jury_finally_hears_from_sam_bankman_fried",
+      "sam_altman_backs_teens_startup_google_unveils_the_pixel_8_and_tiktok_tests_an_ad_free_tier"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_1308",
+    "question": "Which company, known for refining and polishing products based on consumer feedback and learning from competitors' failures, is expected to focus on new Macs and chipsets at its \"Scary Fast\" event, and has been recognized for enforcing uniform terms on developers, OEMs, and carriers through its store and payment system, as reported by TechCrunch, Engadget, and The Verge?",
+    "canonical_answer": "Apple",
+    "answer_variants": [],
+    "reasoning_type": "inference",
+    "source_doc_ids": [
+      "apple_16_inch_m3_max_macbook_pro_review_a_desktop_among_laptops",
+      "what_we_expect_at_apple_s_scary_fast_event_m3_powered_macbook_pros_and_new_imacs",
+      "8_predictions_for_ai_in_2024",
+      "tim_sweeney_on_epic_s_victory_royale_over_google"
+    ],
+    "source_spans": [
+      "The new MacBook Pro, which goes on sale this week, was announced at last week’s Scary Fast event, alongside a new iMac and — of course — several members of the M3 line.",
+      "But, if rumors are to be believed, Apple's focus during the Scary Fast event will be on Macs and a fresh batch of chipsets to power them.",
+      "Apple has an established pattern of waiting, watching and learning from other companies’ failures, then blowing in with a refined and polished take that puts others to shame.",
+      "They use their store, their payments, they force developers to all have the same terms, they force OEMs and carriers to all have the same terms."
+    ],
+    "source_span_offsets": [
+      [
+        1494,
+        1662
+      ],
+      [
+        650,
+        787
+      ],
+      [
+        4597,
+        4771
+      ],
+      [
+        10867,
+        11011
+      ]
+    ],
+    "supporting_doc_ids": [
+      "apple_16_inch_m3_max_macbook_pro_review_a_desktop_among_laptops",
+      "what_we_expect_at_apple_s_scary_fast_event_m3_powered_macbook_pros_and_new_imacs",
+      "8_predictions_for_ai_in_2024",
+      "tim_sweeney_on_epic_s_victory_royale_over_google"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_1422",
+    "question": "Does 'The Guardian' article suggest that Manchester United's commercial operation is less successful than Manchester City's, while the 'Sporting News' article indicates that Manchester United's performance in European competitions is inferior to expectations?",
+    "canonical_answer": "Yes",
+    "answer_variants": [],
+    "reasoning_type": "comparison",
+    "source_doc_ids": [
+      "from_ten_hag_s_future_to_a_leaking_roof_ratcliffe_s_manchester_united_in_tray",
+      "champions_league_permutations_scenarios_what_teams_need_to_qualify_from_groups_for_2023_24_round_of_16_stage"
+    ],
+    "source_spans": [
+      "And there is this, too: across town Manchester City have accrued six championships since United’s last in 2013 and boast a commercial operation that leaves Ratcliffe’s new concern light years behind.",
+      "Manchester United and Newcastle United will play no further part in Europe, though, having been eliminated by finishing bottom of their groups."
+    ],
+    "source_span_offsets": [
+      [
+        2655,
+        2854
+      ],
+      [
+        724,
+        867
+      ]
+    ],
+    "supporting_doc_ids": [
+      "from_ten_hag_s_future_to_a_leaking_roof_ratcliffe_s_manchester_united_in_tray",
+      "champions_league_permutations_scenarios_what_teams_need_to_qualify_from_groups_for_2023_24_round_of_16_stage"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_1444",
+    "question": "Does the Polygon article suggest that choices during character creation and leveling up have no impact on gameplay for \"Rangers in Baldur's Gate 3\" in a similar way to how Polygon describes the requirement for 'Players of Baldur’s Gate 3' to choose an otherworldly patron for Warlocks during character creation?",
+    "canonical_answer": "no",
+    "answer_variants": [],
+    "reasoning_type": "comparison",
+    "source_doc_ids": [
+      "how_to_choose_the_best_class_for_you_in_baldur_s_gate_3",
+      "the_best_warlock_subclass_feats_and_build_in_baldur_s_gate_3"
+    ],
+    "source_spans": [
+      "Rangers also make a lot of choices during character creation (and leveling up) that determine how they play.",
+      "During character creation, you must pick the otherworldy patron that you’ve decided to serve."
+    ],
+    "source_span_offsets": [
+      [
+        4404,
+        4512
+      ],
+      [
+        4944,
+        5037
+      ]
+    ],
+    "supporting_doc_ids": [
+      "how_to_choose_the_best_class_for_you_in_baldur_s_gate_3",
+      "the_best_warlock_subclass_feats_and_build_in_baldur_s_gate_3"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_1486",
+    "question": "Do the 'Business Line' article's criteria for high networth investors to evaluate investment options, which include historical performance and management team assessment, align with the due diligence process that 'The Verge' claims major VC firms undertake, involving thorough investigation before investing?",
+    "canonical_answer": "Yes",
+    "answer_variants": [],
+    "reasoning_type": "comparison",
+    "source_doc_ids": [
+      "investment_options_for_high_networth_investors",
+      "is_sam_bankman_fried_s_defense_even_trying_to_win"
+    ],
+    "source_spans": [
+      "Before investing, investors should conduct thorough research to understand how these investment options work. It’s important to consider the past track record and management team before making investment decisions.",
+      "Plus, major VC firms had invested, and “they don’t commit hundreds of millions without doing due diligence, checking the books, the accountancy of the firm, going through several compliance process[es], so that was a vote of confidence for me,” Juilliard said."
+    ],
+    "source_span_offsets": [
+      [
+        9075,
+        9289
+      ],
+      [
+        5680,
+        5940
+      ]
+    ],
+    "supporting_doc_ids": [
+      "investment_options_for_high_networth_investors",
+      "is_sam_bankman_fried_s_defense_even_trying_to_win"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_156",
+    "question": "Between the TechCrunch report on Sam Bankman-Fried's legal situation published after October 2, 2023, and The Verge's coverage of Sam Bankman-Fried's testimony, was there a change in the narrative regarding his ability to manage FTX and Alameda Research?",
+    "canonical_answer": "No",
+    "answer_variants": [],
+    "reasoning_type": "inference",
+    "source_doc_ids": [
+      "sbf_riding_high_on_ftx_reportedly_offered_5b_to_trump_to_cancel_president_re_run",
+      "the_jury_finally_hears_from_sam_bankman_fried",
+      "sam_altman_backs_teens_startup_google_unveils_the_pixel_8_and_tiktok_tests_an_ad_free_tier"
+    ],
+    "source_spans": [
+      "He doesn’t come off good at all here. You can tell he had no experience in management or handling such big undertakings. I think he was in way over his head,",
+      "Besides the two obvious lies Bankman-Fried told on the stand — about Alameda Research’s name and about “allow_negative” — I have been struck by how little he seems to know about his own companies. Apparently, Singh, Wang, and Ellison were out there just doing whatever their little hearts desired. Because Bankman-Fried was a CEO, but definitely not the kind that pays any attention to money at his crypto trading firm and futures exchange.",
+      "The prosecution painted Bankman-Fried as someone who knowingly committed fraud to achieve great wealth, power and influence, while the defense countered that the FTX founder acted in good faith, never meant to commit fraud or steal and basically got in over his head."
+    ],
+    "source_span_offsets": [
+      [
+        5721,
+        5878
+      ],
+      [
+        9729,
+        10169
+      ],
+      [
+        6389,
+        6656
+      ]
+    ],
+    "supporting_doc_ids": [
+      "sbf_riding_high_on_ftx_reportedly_offered_5b_to_trump_to_cancel_president_re_run",
+      "the_jury_finally_hears_from_sam_bankman_fried",
+      "sam_altman_backs_teens_startup_google_unveils_the_pixel_8_and_tiktok_tests_an_ad_free_tier"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_1576",
+    "question": "After the report by The Age on October 22, 2023, suggesting the possibility of foul play on Google's part, did TechCrunch's stance on December 15, 2023, regarding Google's anticompetitive behavior towards news publishers show agreement or disagreement?",
+    "canonical_answer": "Agreement",
+    "answer_variants": [],
+    "reasoning_type": "inference",
+    "source_doc_ids": [
+      "news_publisher_files_class_action_antitrust_suit_against_google_citing_ai_s_harms_to_their_bottom_line",
+      "is_google_search_better_than_the_rest_and_is_that_fair"
+    ],
+    "source_spans": [
+      "A new class action lawsuit filed this week in the U.S. District Court in D.C. accuses Google and parent company Alphabet of anticompetitive behavior in violation of U.S. antitrust law, the Sherman Act, and others, on behalf of news publishers.",
+      "This month, Wired posted an opinion article by lawyer and privacy advocate Megan Gray, which alleged that Google had accidentally revealed during the trial that it manipulates people’s search queries for maximum ad revenue."
+    ],
+    "source_span_offsets": [
+      [
+        107,
+        350
+      ],
+      [
+        3434,
+        3657
+      ]
+    ],
+    "supporting_doc_ids": [
+      "news_publisher_files_class_action_antitrust_suit_against_google_citing_ai_s_harms_to_their_bottom_line",
+      "is_google_search_better_than_the_rest_and_is_that_fair"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_1582",
+    "question": "Was the news regarding YouTube's involvement with artists in AI experiments inconsistent between the report from Music Business Worldwide on YouTube's collaboration with non-UMG-affiliated artists and the subsequent report from the same source on YouTube's launch of 'Dream Track'?",
+    "canonical_answer": "no",
+    "answer_variants": [],
+    "reasoning_type": "inference",
+    "source_doc_ids": [
+      "sony_music_s_artists_aren_t_involved_in_youtube_s_new_voice_cloning_ai_experiment_not_unrelated_google_s_recent_filing_with_the_us_copyright_office",
+      "cell_phone_shocker_as_97_of_kids_use_their_device_during_school_hours_and_beyond_says_study"
+    ],
+    "source_spans": [
+      "In August, YouTube and Universal Music Group jointly announced that the video platform was launching an ‘AI Music Incubator’ – a program by which new tools and innovations will be developed at YouTube in close conjunction with artists and the music biz.",
+      "Social media such as Instagram and Snapchat took up most screen time, at 32% during the school day, followed by YouTube and gaming, the study found."
+    ],
+    "source_span_offsets": [
+      [
+        1579,
+        1832
+      ],
+      [
+        1095,
+        1243
+      ]
+    ],
+    "supporting_doc_ids": [
+      "sony_music_s_artists_aren_t_involved_in_youtube_s_new_voice_cloning_ai_experiment_not_unrelated_google_s_recent_filing_with_the_us_copyright_office",
+      "cell_phone_shocker_as_97_of_kids_use_their_device_during_school_hours_and_beyond_says_study"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_233",
+    "question": "Which company is at the center of critiques from 'The Verge' for altering internet navigation, is accused by Megan Grey in 'The Age' of manipulating search results for profit, and is the subject of a class action antitrust suit reported by 'TechCrunch' for harming news publishers' revenues?",
+    "canonical_answer": "Google",
+    "answer_variants": [],
+    "reasoning_type": "inference",
+    "source_doc_ids": [
+      "the_people_who_ruined_the_internet",
+      "is_google_search_better_than_the_rest_and_is_that_fair",
+      "news_publisher_files_class_action_antitrust_suit_against_google_citing_ai_s_harms_to_their_bottom_line"
+    ],
+    "source_spans": [
+      "Some blame Google itself, asserting that an all-powerful, all-seeing, trillion-dollar corporation with a 90 percent market share for online search is corrupting our access to the truth.",
+      "This month, Wired posted an opinion article by lawyer and privacy advocate Megan Gray, which alleged that Google had accidentally revealed during the trial that it manipulates people’s search queries for maximum ad revenue.",
+      "A new class action lawsuit filed this week in the U.S. District Court in D.C. accuses Google and parent company Alphabet of anticompetitive behavior in violation of U.S. antitrust law, the Sherman Act, and others, on behalf of news publishers."
+    ],
+    "source_span_offsets": [
+      [
+        1220,
+        1405
+      ],
+      [
+        3434,
+        3657
+      ],
+      [
+        107,
+        350
+      ]
+    ],
+    "supporting_doc_ids": [
+      "the_people_who_ruined_the_internet",
+      "is_google_search_better_than_the_rest_and_is_that_fair",
+      "news_publisher_files_class_action_antitrust_suit_against_google_citing_ai_s_harms_to_their_bottom_line"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_425",
+    "question": "Between the report by Fortune on Sam Bankman-Fried's involvement with Adam Yedidia and Caroline Ellison published on October 4, 2023, and the report by TechCrunch on the allegations against Sam Bankman-Fried published after, is there consistency in the portrayal of Sam Bankman-Fried's actions related to the fraud allegations?",
+    "canonical_answer": "Yes",
+    "answer_variants": [],
+    "reasoning_type": "inference",
+    "source_doc_ids": [
+      "is_sam_bankman_fried_a_bad_man_or_a_good_boy_lawyers_swap_opening_statements_before_first_witnesses_take_the_stand",
+      "sam_altman_backs_teens_startup_google_unveils_the_pixel_8_and_tiktok_tests_an_ad_free_tier"
+    ],
+    "source_spans": [
+      "And who was this defendant? Not a crypto “boy” genius, as so many in the media (Fortune included) have written, but a “man” who “stole billions of dollars from thousands of victims,” Rehn said.",
+      "The prosecution painted Bankman-Fried as someone who knowingly committed fraud to achieve great wealth, power and influence, while the defense countered that the FTX founder acted in good faith, never meant to commit fraud or steal and basically got in over his head."
+    ],
+    "source_span_offsets": [
+      [
+        2307,
+        2500
+      ],
+      [
+        6389,
+        6656
+      ]
+    ],
+    "supporting_doc_ids": [
+      "is_sam_bankman_fried_a_bad_man_or_a_good_boy_lawyers_swap_opening_statements_before_first_witnesses_take_the_stand",
+      "sam_altman_backs_teens_startup_google_unveils_the_pixel_8_and_tiktok_tests_an_ad_free_tier"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_564",
+    "question": "Who is the individual that, according to articles from both Fortune and TechCrunch, allegedly constructed a fraudulent facade of success for a crypto exchange, utilized a colleague for clandestine control over customer funds, and pursued personal enrichment and power through deceptive means?",
+    "canonical_answer": "Sam Bankman-Fried",
+    "answer_variants": [],
+    "reasoning_type": "inference",
+    "source_doc_ids": [
+      "is_sam_bankman_fried_a_bad_man_or_a_good_boy_lawyers_swap_opening_statements_before_first_witnesses_take_the_stand",
+      "sam_altman_backs_teens_startup_google_unveils_the_pixel_8_and_tiktok_tests_an_ad_free_tier"
+    ],
+    "source_spans": [
+      "Using Caroline Ellison, his on-again off-again girlfriend and the CEO of Alameda, as a front, Bankman-Fried had “secret access” to customer money—both cash and crypto—the government claimed.",
+      "Sam Bankman-Fried, the disgraced entrepreneur accused of orchestrating the collapse of cryptocurrency exchange FTX."
+    ],
+    "source_span_offsets": [
+      [
+        1895,
+        2085
+      ],
+      [
+        2539,
+        2654
+      ]
+    ],
+    "supporting_doc_ids": [
+      "is_sam_bankman_fried_a_bad_man_or_a_good_boy_lawyers_swap_opening_statements_before_first_witnesses_take_the_stand",
+      "sam_altman_backs_teens_startup_google_unveils_the_pixel_8_and_tiktok_tests_an_ad_free_tier"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_609",
+    "question": "Considering the information from an article in The Economic Times about Dunzo's latest funding round and a piece from Business Standard detailing Dunzo's expansion plans into new cities, which city, starting with the letter 'B', is both a location where Dunzo has recently expanded its services and is also the city where one of its new investors is headquartered?",
+    "canonical_answer": "Insufficient information.",
+    "answer_variants": [],
+    "reasoning_type": null,
+    "source_doc_ids": [],
+    "source_spans": [],
+    "source_span_offsets": [],
+    "supporting_doc_ids": [],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_67",
+    "question": "Does the article from 'Business Today | Latest Stock Market And Economy News India' suggest that a major attack against Israel requires intelligence support, while the 'Fortune' article claims that Israel halted supplies to Gaza, indicating a difference in the nature of actions attributed to Israel?",
+    "canonical_answer": "Yes",
+    "answer_variants": [],
+    "reasoning_type": "comparison",
+    "source_doc_ids": [
+      "039_massive_intel_failure_by_mossad_039_hamas_039_surprise_attack_on_israel_shocks_internet",
+      "israel_s_blockade_of_gaza_means_that_a_region_the_size_of_philadelphia_faces_a_real_risk_of_starvation_says_peace_studies_scholar"
+    ],
+    "source_spans": [
+      "Another user said that no one can carry out such a major attack against Israel without intelligence support.",
+      "Israel stopped allowing deliveries of food, fuel and other supplies to Gaza’s 2.3 million residents on Oct. 10, 2023, and is reportedly preparing for a ground invasion."
+    ],
+    "source_span_offsets": [
+      [
+        5847,
+        5955
+      ],
+      [
+        409,
+        577
+      ]
+    ],
+    "supporting_doc_ids": [
+      "039_massive_intel_failure_by_mossad_039_hamas_039_surprise_attack_on_israel_shocks_internet",
+      "israel_s_blockade_of_gaza_means_that_a_region_the_size_of_philadelphia_faces_a_real_risk_of_starvation_says_peace_studies_scholar"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_780",
+    "question": "Considering the information from an article in The Times of India and another from The Hindu about Asha Shobana, which city is she planning to organize her next major dance recital in, if she has recently been awarded for her contributions to classical dance in Chennai and is also known for conducting workshops in Bangalore?",
+    "canonical_answer": "Insufficient information.",
+    "answer_variants": [],
+    "reasoning_type": null,
+    "source_doc_ids": [],
+    "source_spans": [],
+    "source_span_offsets": [],
+    "supporting_doc_ids": [],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_816",
+    "question": "Which two individuals, linked by rumors of a romance according to CBSSports.com and The Independent - Life and Style, involve a pop star who appreciates being pursued and was also seen cheering from the box seats at Arrowhead Stadium?",
+    "canonical_answer": "Taylor Swift and Travis Kelce",
+    "answer_variants": [],
+    "reasoning_type": "inference",
+    "source_doc_ids": [
+      "taylor_swift_travis_kelce_timeline_everything_to_know_about_rumored_romance_between_pop_star_chiefs_te",
+      "fans_spot_travis_kelce_wearing_taylor_swift_themed_friendship_bracelet_before_she_attended_his_game"
+    ],
+    "source_spans": [
+      "Taylor Swift likes that Travis Kelce 'pursued her' and the two are having a 'great time getting to know each other,'",
+      "The post came after Swift was seen enthusiastically cheering him on in the box seats at Arrowhead Stadium, fuelling speculation that she and the athlete are dating."
+    ],
+    "source_span_offsets": [
+      [
+        6514,
+        6630
+      ],
+      [
+        941,
+        1105
+      ]
+    ],
+    "supporting_doc_ids": [
+      "taylor_swift_travis_kelce_timeline_everything_to_know_about_rumored_romance_between_pop_star_chiefs_te",
+      "fans_spot_travis_kelce_wearing_taylor_swift_themed_friendship_bracelet_before_she_attended_his_game"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  },
+  {
+    "id": "mhrag_917",
+    "question": "Does the Sporting News article doubt Jordan Love's performance in the upcoming home game, while the CBSSports.com article reflects on Kirk Cousins' performance in last week's game with only 13 Fantasy points?",
+    "canonical_answer": "no",
+    "answer_variants": [],
+    "reasoning_type": "comparison",
+    "source_doc_ids": [
+      "fanduel_picks_week_15_best_nfl_dfs_lineup_advice_for_daily_fantasy_football_tournaments",
+      "nfl_fantasy_football_week_5_lineup_decisions_starts_sits_sleepers_busts_to_know_for_every_game"
+    ],
+    "source_spans": [
+      "Jordan Love appears to have turned a corner, meaning we should expect him to put on a show back at home.",
+      "Lawrence is a decent starter but I'd rather roll with Anthony Richardson, Jordan Love and Justin Fields."
+    ],
+    "source_span_offsets": [
+      [
+        5741,
+        5845
+      ],
+      [
+        2342,
+        2446
+      ]
+    ],
+    "supporting_doc_ids": [
+      "fanduel_picks_week_15_best_nfl_dfs_lineup_advice_for_daily_fantasy_football_tournaments",
+      "nfl_fantasy_football_week_5_lineup_decisions_starts_sits_sleepers_busts_to_know_for_every_game"
+    ],
+    "formula": null,
+    "formula_kind": null,
+    "probe_outcomes": []
+  }
+]

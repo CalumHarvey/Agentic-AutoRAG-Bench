@@ -1,0 +1,30 @@
+# Smoke trial: one method, one seed, three trials on MultiHop-RAG with free Gemini.
+# Measures requests, tokens and minutes per trial to set the budget for later runs.
+#
+#   uv run agentic-autorag-bench run -c configs/smoke_multihop.yaml
+
+project_config: ./smoke_multihop_project.yaml
+
+methods:
+  - random
+
+seeds: [1]
+
+budget:
+  max_trials: 3
+
+benchmark:
+  name: multihop_rag
+  split: MultiHopRAG
+  sample_size: 2000
+  prep_seed: 42
+  output_dir: ./benchmark_data/multihop_rag_val
+  hf_revision: 71ac0d0bd1f951d2d6b70311f7d2ae404e1ffa82
+
+hold_out:
+  qa_path: ./benchmark_data/multihop_rag_val/splits/holdout_qa.json
+  limit: 20
+  judge_model: gemini/gemini-3.5-flash-lite
+  concurrency: 2
+
+output_root: ./experiment-0/smoke_multihop
