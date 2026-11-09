@@ -84,11 +84,11 @@ def _rich_search_space() -> SearchSpace:
             models=["none", "BAAI/bge-reranker-v2-m3"],
             top_n=DiscreteValues(values=[3, 5, 10]),
         ),
-        query_expansion=QueryExpansionSearchSpace(strategies=["none", "hyde"], models=["ollama/llama3.2"]),
+        query_expansion=QueryExpansionSearchSpace(strategies=["none", "hyde"], models=["ollama/qwen2.5:7b"]),
         passage_compressor=PassageCompressorSearchSpace(
-            strategies=["none", "tree_summarize"], models=["ollama/llama3.2"]
+            strategies=["none", "tree_summarize"], models=["ollama/qwen2.5:7b"]
         ),
-        generator=GeneratorSearchSpace(models=["ollama/llama3.2", "ollama/mistral"]),
+        generator=GeneratorSearchSpace(models=["ollama/qwen2.5:7b", "ollama/mistral"]),
         temperature=NumericRange(min=0.0, max=1.0),
     )
 
@@ -98,9 +98,9 @@ def _project(*, cost_aware: bool = False, search_space: SearchSpace | None = Non
         meta=MetaConfig(cost_aware=cost_aware, corpus_description="A tiny test corpus."),
         search_space=search_space or _rich_search_space(),
         agent=AgentConfig(
-            optimizer_model="ollama/llama3.2",
-            examiner_model="ollama/llama3.2",
-            judge_model="ollama/llama3.2",
+            optimizer_model="ollama/qwen2.5:7b",
+            examiner_model="ollama/qwen2.5:7b",
+            judge_model="ollama/qwen2.5:7b",
         ),
     )
 

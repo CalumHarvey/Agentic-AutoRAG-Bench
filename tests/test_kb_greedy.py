@@ -60,7 +60,7 @@ def _search_space(
             models=["none", "BAAI/bge-reranker-v2-m3"],
             top_n=DiscreteValues(values=[3, 10]),
         ),
-        generator=GeneratorSearchSpace(models=["ollama/llama3.2", "ollama/mistral"]),
+        generator=GeneratorSearchSpace(models=["ollama/qwen2.5:7b", "ollama/mistral"]),
         temperature=temperature or NumericRange(min=0.0, max=1.0),
     )
 
@@ -73,9 +73,9 @@ def _project(
         meta=MetaConfig(corpus_description="A tiny test corpus."),
         search_space=_search_space(index_types, temperature),
         agent=AgentConfig(
-            optimizer_model="ollama/llama3.2",
-            examiner_model="ollama/llama3.2",
-            judge_model="ollama/llama3.2",
+            optimizer_model="ollama/qwen2.5:7b",
+            examiner_model="ollama/qwen2.5:7b",
+            judge_model="ollama/qwen2.5:7b",
         ),
     )
 
