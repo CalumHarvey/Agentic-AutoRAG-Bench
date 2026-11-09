@@ -28,6 +28,9 @@ dependencies = [
     # From the same index as torch: PyPI's torchvision is built against PyPI's torch and
     # fails to load its operators next to the CPU or CUDA build.
     "torchvision==0.26.*",
+    # The qlognehvi baseline (Ax/BoTorch GP-BO). Resolves next to the pinned torch
+    # without changing it.
+    "ax-platform>=1.3.1",
 ]
 
 [project.scripts]

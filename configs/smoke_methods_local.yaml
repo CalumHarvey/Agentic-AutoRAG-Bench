@@ -1,0 +1,44 @@
+# Cost-aware smoke test of every search method on local models only ($0): three
+# trials each on the 20-question MultiHop-RAG slice, then a 10-question hold-out per
+# method. Checks that each method runs end to end on real models, not the paper's
+# numbers. The project config sets cost_aware: true, so the searches trade accuracy
+# against per-query LLM cost (shadow-priced for local models).
+#
+# The method slate is the paper's cost-aware (Pareto) one plus qlognehvi. The paper ran
+# it through the `pareto` command, which is tied to the UniDoc corpus; `run` does the
+# same on MultiHop-RAG. Three trials stay inside MO-TPE's 10 and Ax's 18 quasi-random
+# start-up trials, so the model-guided phases are covered by tests/test_motpe.py and
+# tests/test_qlognehvi.py, not by this run.
+#
+#   uv run agentic-autorag-bench run -c configs/smoke_methods_local.yaml
+#   uv run agentic-autorag-bench kb-greedy -c configs/smoke_methods_local.yaml --seed 1
+
+project_config: ./smoke_methods_local_project.yaml
+
+methods:
+  - random
+  - motpe
+  - motpe_warm
+  - qlognehvi
+  - agentic_cost
+
+seeds: [1]
+
+budget:
+  max_trials: 3
+
+benchmark:
+  name: multihop_rag
+  split: MultiHopRAG
+  sample_size: 2000
+  prep_seed: 42
+  output_dir: ./benchmark_data/multihop_rag_val
+  hf_revision: 71ac0d0bd1f951d2d6b70311f7d2ae404e1ffa82
+
+hold_out:
+  qa_path: ./benchmark_data/multihop_rag_val/splits/holdout_qa.json
+  limit: 10
+  judge_model: ollama/gemma3:4b
+  concurrency: 2
+
+output_root: ./experiment-0/smoke_methods_local

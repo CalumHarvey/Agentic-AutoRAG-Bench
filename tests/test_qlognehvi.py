@@ -1,9 +1,8 @@
-"""qLogNEHVI (Ax GP-BO) baseline — ax-free core (encode + flatten-decode) + guards.
+"""qLogNEHVI (Ax GP-BO) baseline: encode + flatten-decode, guards, and the Ax loop.
 
-The Ax dependency is optional and not installed by default, so these tests cover the
-parts that don't need it: the search-space encode, the flat-parametrization decode
-(conditional gating + grid-snapping), and the dependency / cost-aware guards. The Ax
-service loop itself is exercised only once ``ax-platform`` is added.
+The search-space encode, the flat-parametrization decode (conditional gating +
+grid-snapping) and the cost-aware guard need no Ax. The Ax loop tests run the real
+``AxClient`` with a stub evaluator; they skip if ``ax-platform`` is not installed.
 """
 
 from __future__ import annotations
@@ -186,3 +185,97 @@ async def test_search_without_ax_raises_helpful_error(tmp_path: Path) -> None:
 
     with pytest.raises(ImportError, match="uv add ax-platform"):
         await opt.search(_evaluator, Budget(max_trials=2), seed=1)
+
+
+def _scoring_evaluator():
+    """Stub evaluator: accuracy and per-query cost vary with the config, so Ax sees a
+    non-constant two-objective response."""
+
+    async def evaluator(config) -> TrialResult:
+        acc = min(1.0, 0.3 + 0.03 * config.top_k)
+        cost = 1e-5 * config.top_k * (2.0 if config.reranker != "none" else 1.0)
+        return TrialResult(
+            answer_accuracy=acc,
+            metrics={"answer_accuracy": acc, "mean_em": acc, "mean_f1": acc, "mean_retrieval_quality": acc},
+            eval_usd=0.001,
+            mean_llm_cost_per_query_usd=cost,
+        )
+
+    return evaluator
+
+
+@pytest.mark.asyncio
+async def test_search_runs_the_ax_loop(tmp_path: Path) -> None:
+    """The Ax ask/tell loop runs end to end and records both objectives per trial."""
+    pytest.importorskip("ax")
+    project = _project(True)
+    sr = await QLogNEHVISearch(project=project, storage_dir=tmp_path).search(
+        _scoring_evaluator(), Budget(max_trials=4), seed=1
+    )
+    assert len(sr.history) == 4
+    assert all(h.mean_llm_cost_per_query_usd > 0 for h in sr.history)
+    assert sr.extras["acquisition"] == "qLogNEHVI"
+    assert len(sr.extras["ax_generator_per_trial"]) == 4
+    assert sum(sr.extras["ax_generator_counts"].values()) == 4
+
+
+@pytest.mark.asyncio
+async def test_search_reaches_botorch_on_a_small_space(tmp_path: Path) -> None:
+    """On a small space Ax leaves its quasi-random Sobol start-up for BoTorch
+    (qLogNEHVI), and the result records which generator proposed each trial."""
+    pytest.importorskip("ax")
+    small = SearchSpace(
+        chunking=ChunkingSearchSpace(
+            strategies=["recursive"],
+            chunk_token_size=DiscreteValues(values=[512]),
+            chunk_token_overlap=DiscreteValues(values=[0]),
+        ),
+        embedding=EmbeddingSearchSpace(models=["m1"]),
+        retrieval=RetrievalSearchSpace(
+            index_types=[IndexType.VECTOR_ONLY],
+            top_k=NumericRange(min=3, max=20),
+            hybrid_alpha=NumericRange(min=0.5, max=0.5),
+        ),
+        reranker=RerankerSearchSpace(models=["none", "BAAI/bge-reranker-v2-m3"], top_n=DiscreteValues(values=[3])),
+        query_expansion=QueryExpansionSearchSpace(strategies=["none"], models=[]),
+        passage_compressor=PassageCompressorSearchSpace(strategies=["none"], models=[]),
+        generator=GeneratorSearchSpace(models=["ollama/qwen2.5:7b"]),
+        temperature=NumericRange(min=1.0, max=1.0),
+    )
+    project = _project(True).model_copy(update={"search_space": small})
+    sr = await QLogNEHVISearch(project=project, storage_dir=tmp_path).search(
+        _scoring_evaluator(), Budget(max_trials=8), seed=1
+    )
+    per_trial = sr.extras["ax_generator_per_trial"]
+    assert per_trial[0] == "Sobol"
+    assert "BoTorch" in per_trial, per_trial
+
+
+@pytest.mark.asyncio
+async def test_search_runs_with_single_value_dimensions(tmp_path: Path) -> None:
+    """A dimension with one allowed value (one chunking strategy, one generator, a
+    one-value grid) is fixed, not a choice: Ax rejects a choice with one value."""
+    pytest.importorskip("ax")
+    space = _rich_space().model_copy(
+        update={
+            "chunking": ChunkingSearchSpace(
+                strategies=["recursive"],
+                chunk_token_size=DiscreteValues(values=[256, 512]),
+                chunk_token_overlap=DiscreteValues(values=[0]),
+            ),
+            "generator": GeneratorSearchSpace(models=["ollama/qwen2.5:7b"]),
+            "query_expansion": QueryExpansionSearchSpace(strategies=["none"], models=["ollama/qwen2.5:7b"]),
+            "passage_compressor": PassageCompressorSearchSpace(strategies=["none"], models=[]),
+            "temperature": NumericRange(min=1.0, max=1.0),
+        }
+    )
+    project = _project(True).model_copy(update={"search_space": space})
+    sr = await QLogNEHVISearch(project=project, storage_dir=tmp_path).search(
+        _scoring_evaluator(), Budget(max_trials=3), seed=1
+    )
+    assert len(sr.history) == 3
+    for h in sr.history:
+        assert h.config["chunking_strategy"] == "recursive"
+        assert h.config["chunk_token_overlap"] == 0
+        assert h.config["generator_llm"] == "ollama/qwen2.5:7b"
+        assert h.config["temperature"] == 1.0

@@ -27,17 +27,22 @@ Design (so the ax-free core is unit-testable and only the thin service-loop glue
   infeasible ones via ``log_trial_failure``, and reports accuracy + per-query cost. ``import ax`` is
   deferred into ``search`` so the bench imports cleanly without the optional dependency.
 
-STATUS: the encode/decode core is unit-tested (``tests/test_qlognehvi.py``); the Ax service loop is
-written against Ax's Service API (``AxClient`` + ``ObjectiveProperties``; MO ⇒ qLogNEHVI by default) but
-is UNVERIFIED at runtime pending ``uv add ax-platform`` — Ax pulls botorch/gpytorch and pins torch, so
-adding it deliberately (and re-checking the sentence-transformers torch version) is a maintainer call.
-Not in any default config's ``methods`` list; wire it into the Pareto experiment when the dep is added.
+STATUS: ``ax-platform`` is a bench dependency (Ax 1.3.1, botorch 0.18.1; torch unchanged), and
+``tests/test_qlognehvi.py`` runs the Ax loop with a stub evaluator. Not in any paper config's
+``methods`` list.
+
+Ax chooses its own generation strategy: quasi-random Sobol start-up trials, then BoTorch (qLogNEHVI).
+How many Sobol trials depends on the space (18 on ``configs/smoke_methods_local_project.yaml``), and on
+a large categorical space Ax may never leave Sobol (the UniDoc Pareto space stays Sobol for 45 trials,
+past the 30-trial budget) — then this baseline is quasi-random search, not GP-BO. Each result records
+the generator behind every trial (``extras["ax_generator_per_trial"]`` and ``["ax_generator_counts"]``).
 """
 
 from __future__ import annotations
 
 import logging
 import time
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -82,19 +87,29 @@ def ax_parameters(search_space: SearchSpace) -> list[dict]:
     and ``reranker_top_n`` are emitted over their FULL declared range and gated to
     ``< chunk_size`` / ``<= top_k`` at decode time. Stage-LLM params are emitted
     only when their pool is non-empty; ``reasoning`` only when some generator
-    supports it.
+    supports it. A dimension with a single allowed value (one choice, or a range
+    with ``min == max``) becomes an Ax ``fixed`` parameter: Ax rejects a one-value
+    choice and an empty range.
     """
     ss = search_space
     params: list[dict] = []
 
+    def _fixed(name: str, value) -> dict:
+        return {"name": name, "type": "fixed", "value": value}
+
     def _choice(name: str, values: list, *, ordered: bool) -> dict:
-        return {"name": name, "type": "choice", "values": list(values), "is_ordered": ordered, "sort_values": False}
+        if len(values) == 1:
+            return _fixed(name, values[0])
+        # Ax requires ordered numeric choices to be sorted (``sort_values=True``).
+        return {"name": name, "type": "choice", "values": list(values), "is_ordered": ordered, "sort_values": ordered}
 
     def _numeric(name: str, dim, *, is_float: bool) -> dict:
         if _is_discrete(dim):
             vals = [float(v) for v in dim.values] if is_float else [int(v) for v in dim.values]
             return _choice(name, vals, ordered=True)
         lo, hi = (float(dim.min), float(dim.max)) if is_float else (int(dim.min), int(dim.max))
+        if lo == hi:
+            return _fixed(name, lo)
         return {"name": name, "type": "range", "bounds": [lo, hi], "value_type": "float" if is_float else "int"}
 
     params.append(_choice("chunking_strategy", ss.chunking.strategies, ordered=False))
@@ -262,6 +277,10 @@ class QLogNEHVISearch:
         )
 
         history: list[HistoryEntry] = []
+        # Which Ax generator proposed each recorded trial ("Sobol" or "BoTorch").
+        # Ax picks its own strategy and, on a large categorical space, may never
+        # leave Sobol (quasi-random), so the results must show whether GP-BO ran.
+        generator_per_trial: list[str] = []
         n_validation_rejects = 0
         t_start = time.perf_counter()
         for trial_num in range(1, budget.max_trials + 1):
@@ -299,6 +318,7 @@ class QLogNEHVISearch:
                     "mean_llm_cost_per_query_usd": float(result.mean_llm_cost_per_query_usd),
                 },
             )
+            generator_per_trial.append(_ax_generator_key(ax_client, trial_index))
             history.append(
                 HistoryEntry(
                     trial_number=trial_num,
@@ -329,5 +349,22 @@ class QLogNEHVISearch:
             prompt_tokens=sum(h.prompt_tokens for h in history),
             completion_tokens=sum(h.completion_tokens for h in history),
             embedding_tokens=sum(h.embedding_tokens for h in history),
-            extras={"n_validation_rejects": n_validation_rejects, "acquisition": "qLogNEHVI"},
+            extras={
+                "n_validation_rejects": n_validation_rejects,
+                "acquisition": "qLogNEHVI",
+                "ax_generator_per_trial": generator_per_trial,
+                "ax_generator_counts": dict(Counter(generator_per_trial)),
+            },
         )
+
+
+def _ax_generator_key(ax_client, trial_index: int) -> str:
+    """Name of the Ax generator ("Sobol", "BoTorch") behind a trial, or "unknown".
+
+    Ax exposes it only as a private ``GeneratorRun`` attribute, so read it defensively.
+    """
+    try:
+        run = ax_client.experiment.trials[trial_index].generator_runs[0]
+    except (AttributeError, IndexError, KeyError):
+        return "unknown"
+    return str(getattr(run, "_generator_key", None) or "unknown")
