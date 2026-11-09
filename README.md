@@ -1,5 +1,12 @@
 # Agentic AutoRAG Benchmark Suite
 
+> **This is a fork** of [lassebaerlandstrand/Agentic-AutoRAG-Bench](https://github.com/lassebaerlandstrand/Agentic-AutoRAG-Bench),
+> branched from the `emnlp-neurips-camera-ready` tag. It adds `stagebo`, a stage-decomposed,
+> judge-noise-aware Bayesian search method, compared head-to-head with the methods below
+> on the same search space and budget. It pairs with the
+> [optimiser fork](https://github.com/CalumHarvey/Agentic-AutoRAG), cloned next to this one.
+> Everything else below is the upstream README.
+
 Benchmark and reproduction code for the Agentic AutoRAG paper. It compares our
 reasoning-agent optimizer against random search and MO-TPE (the optimizer syftr
 uses) on two experiments:
@@ -391,6 +398,13 @@ frontier — not its exact numbers.
 - The earlier AutoRAG baseline was removed from the active matrix and is kept
   under `agentic_autorag_bench/_deprecated/`.
 
+## Citation
+
+This fork builds on the Agentic AutoRAG paper. Please cite it if you use this code:
+*Agentic AutoRAG: RAG Pipeline Optimization through Reasoning-Driven Agents*, NeurIPS 2026
+([listing](https://neurips.cc/virtual/2026/178981)).
+
 ## License
 
-MIT — see `LICENSE`.
+MIT — see `LICENSE`. The original copyright is kept; changes in this fork carry their own
+copyright line.

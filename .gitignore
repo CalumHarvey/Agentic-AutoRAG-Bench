@@ -46,6 +46,8 @@ benchmark_data/*/*
 !benchmark_data/*/metadata.json
 !benchmark_data/*/splits/
 !benchmark_data/*/splits/*.json
+# Fork: fixed exam slices for smoke trials (configs/smoke_*.yaml).
+!benchmark_data/*/smoke_exam_*.json
 
 # Editor state
 *.swp
@@ -67,7 +69,10 @@ results_*/
 *_artifacts/
 
 # Session-local scratch — not part of the shipped benchmark artifact.
-/CLAUDE.md
+# (The fork tracks its CLAUDE.md: issue tracker, labels, layout.)
 /knowledge_base_render.md
 *.out
 configs/_canary_*
+
+# Smoke and scratch runs (configs/smoke_*.yaml): outputs and logs stay local.
+experiment-0/

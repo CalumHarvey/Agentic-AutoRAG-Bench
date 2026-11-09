@@ -1,0 +1,64 @@
+# Lint and run the test suite on every push and pull request.
+# Needs no data, models or API keys: tests/conftest.py stubs the LLM check when no
+# Ollama is reachable, and the committed results need no network.
+# The bench resolves the optimiser at ../Agentic-AutoRAG, so both forks are checked
+# out side by side, on the branch of the same name when the optimiser has one.
+name: CI
+
+on:
+  push:
+    branches: [main, stagebo]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          path: Agentic-AutoRAG-Bench
+
+      - name: Pick the optimiser branch
+        id: opt
+        env:
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          if git ls-remote --exit-code --heads https://github.com/CalumHarvey/Agentic-AutoRAG.git "$BRANCH" >/dev/null; then
+            echo "ref=$BRANCH" >> "$GITHUB_OUTPUT"
+          else
+            echo "ref=stagebo" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v5
+        with:
+          repository: CalumHarvey/Agentic-AutoRAG
+          ref: ${{ steps.opt.outputs.ref }}
+          path: Agentic-AutoRAG
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: Agentic-AutoRAG-Bench/uv.lock
+
+      - name: Install
+        # Exactly the versions in uv.lock (fails if the lock is stale); torch is the CPU build.
+        working-directory: Agentic-AutoRAG-Bench
+        run: uv sync --locked --extra dev
+
+      - name: Lint
+        # The package and tests; scripts/ carries upstream lint debt.
+        working-directory: Agentic-AutoRAG-Bench
+        run: uv run --no-sync ruff check agentic_autorag_bench tests
+
+      - name: Test
+        working-directory: Agentic-AutoRAG-Bench
+        run: uv run --no-sync python -m pytest -q
