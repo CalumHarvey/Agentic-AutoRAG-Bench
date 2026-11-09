@@ -25,6 +25,9 @@ dependencies = [
     # Listed directly (it comes in through agentic-autorag) so the source below applies:
     # the CUDA build on Windows, so embedding and reranking run on the GPU.
     "torch==2.11.*",
+    # From the same index as torch: PyPI's torchvision is built against PyPI's torch and
+    # fails to load its operators next to the CPU or CUDA build.
+    "torchvision==0.26.*",
 ]
 
 [project.scripts]
@@ -43,6 +46,10 @@ agentic-autorag = { path = "../Agentic-AutoRAG", editable = true }
 # On Linux (CI) the CPU build: PyPI's Linux wheel pulls several GB of CUDA libraries.
 # macOS wheels on PyPI are CPU-only already.
 torch = [
+    { index = "pytorch-cu130", marker = "sys_platform == 'win32'" },
+    { index = "pytorch-cpu", marker = "sys_platform == 'linux'" },
+]
+torchvision = [
     { index = "pytorch-cu130", marker = "sys_platform == 'win32'" },
     { index = "pytorch-cpu", marker = "sys_platform == 'linux'" },
 ]
