@@ -263,7 +263,7 @@ class QLogNEHVISearch:
 
         history: list[HistoryEntry] = []
         n_validation_rejects = 0
-        t_start = time.monotonic()
+        t_start = time.perf_counter()
         for trial_num in range(1, budget.max_trials + 1):
             config = None
             trial_index = None
@@ -325,7 +325,7 @@ class QLogNEHVISearch:
             history=history,
             optimizer_usd=0.0,
             trial_usd_total=sum(h.eval_usd for h in history),
-            wall_clock_s=time.monotonic() - t_start,
+            wall_clock_s=time.perf_counter() - t_start,
             prompt_tokens=sum(h.prompt_tokens for h in history),
             completion_tokens=sum(h.completion_tokens for h in history),
             embedding_tokens=sum(h.embedding_tokens for h in history),

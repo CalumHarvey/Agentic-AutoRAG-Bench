@@ -94,7 +94,7 @@ class AgenticOptimizer:
         orch.config.meta.max_trials = budget.max_trials
         orch.config.meta.cost_aware = self.cost_aware
 
-        t_start = time.monotonic()
+        t_start = time.perf_counter()
         await orch.run()
 
         include_graph = orch.config.uses_graph()
@@ -140,7 +140,7 @@ class AgenticOptimizer:
             history=history,
             optimizer_usd=optimizer_usd,
             trial_usd_total=trial_usd_total,
-            wall_clock_s=time.monotonic() - t_start,
+            wall_clock_s=time.perf_counter() - t_start,
             prompt_tokens=sum(h.prompt_tokens for h in history),
             completion_tokens=sum(h.completion_tokens for h in history),
             embedding_tokens=sum(h.embedding_tokens for h in history),

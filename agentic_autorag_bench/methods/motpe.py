@@ -433,7 +433,7 @@ class MOTPESearch:
         n_validation_rejects = 0
         n_pruned = 0
 
-        t_start = time.monotonic()
+        t_start = time.perf_counter()
         for trial_num in range(len(history) + 1, budget.max_trials + 1):
             trial = None
             config = None
@@ -495,7 +495,7 @@ class MOTPESearch:
             except Exception:
                 logger.warning("Failed to persist Optuna sampler", exc_info=True)
             _append_history(history_path, entry)
-            cumulative = prior_wall_s + (time.monotonic() - t_start)
+            cumulative = prior_wall_s + (time.perf_counter() - t_start)
             wall_clock_path.write_text(json.dumps({"wall_clock_s": cumulative}), encoding="utf-8")
 
             best = max(h.answer_accuracy for h in history)
@@ -516,7 +516,7 @@ class MOTPESearch:
         # reads the whole frontier from history separately (per-query cost is on
         # every HistoryEntry).
         best_entry = max(history, key=lambda h: h.answer_accuracy)
-        total_wall = prior_wall_s + (time.monotonic() - t_start)
+        total_wall = prior_wall_s + (time.perf_counter() - t_start)
         return SearchResult(
             method=self.name,
             seed=seed,

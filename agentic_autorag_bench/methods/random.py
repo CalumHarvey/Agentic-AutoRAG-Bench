@@ -112,7 +112,7 @@ class RandomSearch:
 
         trial_usd_total = sum(h.eval_usd for h in history)
 
-        t_start = time.monotonic()
+        t_start = time.perf_counter()
         for trial_num in range(len(history) + 1, budget.max_trials + 1):
             config = None
             for _ in range(MAX_RESAMPLE_ATTEMPTS):
@@ -157,7 +157,7 @@ class RandomSearch:
             if rng_state_path is not None:
                 _atomic_pickle(rng_state_path, rng.getstate())
             if wall_clock_path is not None:
-                cumulative = prior_wall_s + (time.monotonic() - t_start)
+                cumulative = prior_wall_s + (time.perf_counter() - t_start)
                 wall_clock_path.write_text(json.dumps({"wall_clock_s": cumulative}), encoding="utf-8")
 
             best = max(h.answer_accuracy for h in history)
@@ -170,7 +170,7 @@ class RandomSearch:
             raise RuntimeError("Random search produced no successful trials")
 
         best_entry = max(history, key=lambda h: h.answer_accuracy)
-        total_wall = prior_wall_s + (time.monotonic() - t_start)
+        total_wall = prior_wall_s + (time.perf_counter() - t_start)
         return SearchResult(
             method=self.name,
             seed=seed,

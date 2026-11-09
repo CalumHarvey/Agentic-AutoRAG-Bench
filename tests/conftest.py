@@ -56,4 +56,4 @@ def _stub_llm_probe_without_ollama(monkeypatch: pytest.MonkeyPatch) -> None:
         return
     from agentic_autorag.config import models
 
-    monkeypatch.setattr(models, "_probe_model", lambda model: (True, None))
+    monkeypatch.setattr(models, "_probe_model", lambda model, **_: (True, None))

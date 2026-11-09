@@ -1,0 +1,31 @@
+# Smoke trial with a local generator: the same three random-search trials as
+# smoke_multihop.yaml (same seed, same search space), but qwen2.5:7b answers through
+# Ollama; Gemini still judges. Compares answer quality, time and (shadow-priced) cost.
+#
+#   uv run agentic-autorag-bench run -c configs/smoke_multihop_local.yaml
+
+project_config: ./smoke_multihop_local_project.yaml
+
+methods:
+  - random
+
+seeds: [1]
+
+budget:
+  max_trials: 3
+
+benchmark:
+  name: multihop_rag
+  split: MultiHopRAG
+  sample_size: 2000
+  prep_seed: 42
+  output_dir: ./benchmark_data/multihop_rag_val
+  hf_revision: 71ac0d0bd1f951d2d6b70311f7d2ae404e1ffa82
+
+hold_out:
+  qa_path: ./benchmark_data/multihop_rag_val/splits/holdout_qa.json
+  limit: 20
+  judge_model: gemini/gemini-3.5-flash-lite
+  concurrency: 2
+
+output_root: ./experiment-0/smoke_multihop_local
