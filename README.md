@@ -5,6 +5,7 @@
 > judge-noise-aware Bayesian search method, compared head-to-head with the methods below
 > on the same search space and budget. It pairs with the
 > [optimiser fork](https://github.com/CalumHarvey/Agentic-AutoRAG), cloned next to this one.
+> The plan, its milestones and where it stands: [`docs/plan.md`](docs/plan.md).
 > Everything else below is the upstream README.
 
 Benchmark and reproduction code for the Agentic AutoRAG paper. It compares our
